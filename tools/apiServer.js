@@ -17,10 +17,7 @@ const path = require("path");
 const router = jsonServer.router(path.join(__dirname, "db.json"));
 
 // Can pass a limited number of options to this to override (some) defaults. See https://github.com/typicode/json-server#api
-const middlewares = jsonServer.defaults({
-  // Display json-server's built in homepage when json-server starts.
-  static: "node_modules/json-server/dist"
-});
+const middlewares = jsonServer.defaults();
 
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares);
@@ -30,7 +27,7 @@ server.use(jsonServer.bodyParser);
 
 // Simulate delay on all requests
 server.use(function(req, res, next) {
-  setTimeout(next, 0);
+  setTimeout(next, 2000);
 });
 
 // Declaring custom routes below. Add custom routes before JSON Server router
